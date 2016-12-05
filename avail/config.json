@@ -10,7 +10,7 @@
     },
     "regions": [
         {
-           "name": "lab-1",
+           "name": "cz-1.lab",
            "services": [
                {"name": "nova", "url": "public.fuel.local:8774/"},
                {"name": "swift", "url": "https://public.fuel.local:8080/v1/status"},
