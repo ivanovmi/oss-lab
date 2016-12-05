@@ -1,2 +1,2 @@
 # lab-config
-OSS Lan config repo
+OSS Lab config repo
