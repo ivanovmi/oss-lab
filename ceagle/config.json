@@ -7,6 +7,6 @@
     "use_fake_api_data": false,
     "services": {
         "health": "172.16.169.60:5001",
- 	      "availability": "172.16.169.60:502",
+ 	     "availability": "172.16.169.60:5002"
     }
 }
