@@ -6,7 +6,7 @@
     },
     "use_fake_api_data": false,
     "services": {
-        "health": "172.16.169.60:5001",
- 	     "availability": "172.16.169.60:5002"
+        "health": "http://10.24.0.5:5001",
+ 	"availability": "http://10.24.0.5:5002"
     }
 }

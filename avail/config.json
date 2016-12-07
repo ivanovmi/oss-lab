@@ -6,22 +6,20 @@
     },
     "backend": {
         "type": "elastic",
-        "connection": [{"host": "172.16.169.60", "port": 9200}]
+        "connection": [{"host": "10.24.0.5", "port": 9200}]
     },
     "regions": [
         {
            "name": "cz-1.lab",
            "services": [
-               {"name": "nova", "url": "public.fuel.local:8774/"},
-               {"name": "swift", "url": "https://public.fuel.local:8080/v1/status"},
-               {"name": "cinder", "url": "https://public.fuel.local:8776/"},
-               {"name": "neutron", "url": "https://public.fuel.local:9696/"},
-               {"name": "heat", "url": "https://public.fuel.local:8004/v1/"},
-               {"name": "glance", "url": "https://public.fuel.local:9292"},
-               {"name": "keystone v2", "url": "https://public.fuel.local:5000/v2.0"}, 
-               {"name": "s3", "url": "https://public.fuel.local:8080"},
-               {"name": "cinder v3", "url": "https://public.fuel.local:8776/v3/"}
-               {"name": "cinder v2", "url": "https://public.fuel.local:8776/v2/"}
+               {"name": "openstack.nova", "url": "https://172.16.169.31:8774/"},
+               {"name": "openstack.swift", "url": "https://172.16.169.31:8080/v1/status"},
+               {"name": "openstack.cinder", "url": "https://172.16.169.31:8776/"},
+               {"name": "openstack.neutron", "url": "https://172.16.169.31:9696/"},
+               {"name": "openstack.heat", "url": "https://172.16.169.31:8004/v1/"},
+               {"name": "openstack.glance", "url": "https://172.16.169.31:9292"},
+               {"name": "openstack.keystone", "url": "https://172.16.169.31:5000/v2.0"},
+               {"name": "openstack.cinder", "url": "https://172.16.169.31:8776/v3/"}
            ]
         }
     ],
