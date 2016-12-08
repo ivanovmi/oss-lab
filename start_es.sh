@@ -1,3 +1,6 @@
+#!/bin/bash -e
+
+data="$(pwd)/data"
+
 echo "Start Elastic"
-mkdir `pwd`/esdata
-docker run --name elastic -d -v `pwd`/esdata:/usr/share/elasticsearch/data -p 9200:9200 elasticsearch
+docker run --name elastic -d -v $data:/usr/share/elasticsearch/data -p 9200:9200 elasticsearch
