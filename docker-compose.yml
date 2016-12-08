@@ -1,0 +1,81 @@
+version: '2.1'
+services:
+    # infra
+    elasticsearch:
+        image: elasticsearch
+        volumes:
+         - ./data:/usr/share/elasticsearch/data
+        networks:
+            oss-net:
+                aliases:
+                    - elasticsearch
+        restart: always
+    # jobs
+    availability-watcher:
+        depends_on:
+         - elasticsearch
+        image: seecloud/availability:latest
+        volumes:
+         - ./configs/availability:/etc/availability
+        networks:
+         - oss-net
+        entrypoint:
+         - availability-watcher
+        restart: always
+    health-collector:
+        depends_on:
+         - elasticsearch
+        image: seecloud/health:latest
+        volumes:
+         - ./configs/health:/etc/health
+        environment:
+         - RUN_HEALTH_JOB=True
+        networks:
+         - oss-net
+        restart: always
+    # apis
+    availability-api:
+        image: seecloud/availability:latest
+        volumes:
+         - ./configs/availability:/etc/availability
+        entrypoint:
+         - ./entrypoint-api.sh
+        networks:
+            oss-net:
+                aliases:
+                    - availability-api
+        restart: always
+    health-api:
+        image: seecloud/health:latest
+        volumes:
+         - ./configs/health:/etc/health
+        environment:
+         - RUN_HEALTH_API=True
+        networks:
+            oss-net:
+                aliases:
+                    - health-api
+        restart: always
+    ceagle:
+        image: seecloud/ceagle:latest
+        volumes:
+         - ./configs/ceagle:/etc/ceagle
+        networks:
+            oss-net:
+                aliases:
+                    - ceagle
+        restart: always
+    # ui
+    devops-portal:
+        image: seecloud/fuel-devops-portal:latest
+        volumes:
+         - ./configs/nginx:/etc/nginx/conf.d/
+        ports:
+         - "${PORTAL_HTTP_PORT:-80}:80"
+         - "${PORTAL_HTTPS_PORT:-443}:443"
+        networks:
+         - oss-net
+        restart: always
+networks:
+    oss-net:
+        driver: bridge
