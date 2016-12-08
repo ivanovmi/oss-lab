@@ -6,7 +6,7 @@
     },
     "backend": {
         "type": "elastic",
-        "connection": [{"host": "10.24.0.5", "port": 9200}]
+        "connection": [{"host": "elasticsearch", "port": 9200}]
     },
     "regions": [
         {

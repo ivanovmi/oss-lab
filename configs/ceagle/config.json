@@ -6,7 +6,7 @@
     },
     "use_fake_api_data": false,
     "services": {
-        "health": "http://10.24.0.5:5001",
- 	"availability": "http://10.24.0.5:5002"
+        "health": "http://health-api:5000",
+        "availability": "http://availability-api:5000"
     }
 }
