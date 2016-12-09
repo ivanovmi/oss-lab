@@ -16,7 +16,7 @@ services:
          - elasticsearch
         image: seecloud/availability:latest
         volumes:
-         - ./configs/availability:/etc/availability
+         - ${DIR}/configs/availability:/etc/availability
         networks:
          - oss-net
         entrypoint:
@@ -27,7 +27,7 @@ services:
          - elasticsearch
         image: seecloud/health:latest
         volumes:
-         - ./configs/health:/etc/health
+         - ${DIR}/configs/health:/etc/health
         environment:
          - RUN_HEALTH_JOB=True
         networks:
@@ -37,7 +37,7 @@ services:
     availability-api:
         image: seecloud/availability:latest
         volumes:
-         - ./configs/availability:/etc/availability
+         - ${DIR}/configs/availability:/etc/availability
         entrypoint:
          - ./entrypoint-api.sh
         networks:
@@ -48,7 +48,7 @@ services:
     health-api:
         image: seecloud/health:latest
         volumes:
-         - ./configs/health:/etc/health
+         - ${DIR}/configs/health:/etc/health
         environment:
          - RUN_HEALTH_API=True
         networks:
@@ -59,7 +59,7 @@ services:
     ceagle:
         image: seecloud/ceagle:latest
         volumes:
-         - ./configs/ceagle:/etc/ceagle
+         - ${DIR}/configs/ceagle:/etc/ceagle
         networks:
             oss-net:
                 aliases:
