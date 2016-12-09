@@ -11,7 +11,7 @@ sudo sysctl --system
 
 # Install docker
 sudo apt-get update \
-    && sudo apt-get install \
+    && sudo apt-get install --yes \
         apt-transport-https \
         ca-certificates \
         python-virtualenv \
@@ -22,7 +22,7 @@ sudo apt-key adv \
 echo "deb https://apt.dockerproject.org/repo ubuntu-${codename} main" \
     | sudo tee /etc/apt/sources.list.d/docker.list
 sudo apt-get update \
-    && sudo apt-get install docker-engine
+    && sudo apt-get install --yes docker-engine
 sudo usermod -aG docker $username
 
 # Install docker-compose in virtualenv
