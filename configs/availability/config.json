@@ -12,14 +12,14 @@
         {
            "name": "cz-1.lab",
            "services": [
-               {"name": "openstack.nova", "url": "https://172.16.169.31:8774/"},
-               {"name": "openstack.swift", "url": "https://172.16.169.31:8080/v1/status"},
-               {"name": "openstack.cinder", "url": "https://172.16.169.31:8776/"},
-               {"name": "openstack.neutron", "url": "https://172.16.169.31:9696/"},
-               {"name": "openstack.heat", "url": "https://172.16.169.31:8004/v1/"},
-               {"name": "openstack.glance", "url": "https://172.16.169.31:9292"},
-               {"name": "openstack.keystone", "url": "https://172.16.169.31:5000/v2.0"},
-               {"name": "openstack.cinder", "url": "https://172.16.169.31:8776/v3/"}
+               {"name": "openstack.nova", "url": "https://OPENSTACK_IP:8774/"},
+               {"name": "openstack.swift", "url": "https://OPENSTACK_IP:8080/v1/status"},
+               {"name": "openstack.cinder", "url": "https://OPENSTACK_IP:8776/"},
+               {"name": "openstack.neutron", "url": "https://OPENSTACK_IP:9696/"},
+               {"name": "openstack.heat", "url": "https://OPENSTACK_IP:8004/v1/"},
+               {"name": "openstack.glance", "url": "https://OPENSTACK_IP:9292"},
+               {"name": "openstack.keystone", "url": "https://OPENSTACK_IP:5000/v2.0"},
+               {"name": "openstack.cinder", "url": "https://OPENSTACK_IP:8776/v3/"}
            ]
         }
     ],

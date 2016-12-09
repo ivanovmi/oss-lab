@@ -4,7 +4,7 @@ services:
     elasticsearch:
         image: elasticsearch
         volumes:
-         - ./data:/usr/share/elasticsearch/data
+         - ${DIR}/data:/usr/share/elasticsearch/data
         networks:
             oss-net:
                 aliases:
