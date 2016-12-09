@@ -1,8 +1,7 @@
 version: '2.1'
 services:
-    # infra
     elasticsearch:
-        image: elasticsearch
+        image: elasticsearch:${TAG:-latest}
         volumes:
          - ${DIR}/data:/usr/share/elasticsearch/data
         networks:
