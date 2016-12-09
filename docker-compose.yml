@@ -2,7 +2,7 @@ version: '2.1'
 services:
     # jobs
     availability-watcher:
-        image: seecloud/availability:latest
+        image: seecloud/availability:${LABEL:-latest}
         volumes:
          - ${DIR}/configs/availability:/etc/availability
         networks:
@@ -11,7 +11,7 @@ services:
          - availability-watcher
         restart: always
     health-collector:
-        image: seecloud/health:latest
+        image: seecloud/health:${LABEL:-latest}
         volumes:
          - ${DIR}/configs/health:/etc/health
         environment:
@@ -21,7 +21,7 @@ services:
         restart: always
     # apis
     availability-api:
-        image: seecloud/availability:latest
+        image: seecloud/availability:${LABEL:-latest}
         volumes:
          - ${DIR}/configs/availability:/etc/availability
         entrypoint:
@@ -32,7 +32,7 @@ services:
                     - availability-api
         restart: always
     health-api:
-        image: seecloud/health:latest
+        image: seecloud/health:${LABEL:-latest}
         volumes:
          - ${DIR}/configs/health:/etc/health
         environment:
@@ -43,7 +43,7 @@ services:
                     - health-api
         restart: always
     ceagle:
-        image: seecloud/ceagle:latest
+        image: seecloud/ceagle:${LABEL:-latest}
         volumes:
          - ${DIR}/configs/ceagle:/etc/ceagle
         networks:
@@ -53,7 +53,7 @@ services:
         restart: always
     # ui
     devops-portal:
-        image: seecloud/fuel-devops-portal:latest
+        image: seecloud/fuel-devops-portal:${LABEL:-latest}
         volumes:
          - ${DIR}/configs/nginx:/etc/nginx/conf.d/
         ports:
