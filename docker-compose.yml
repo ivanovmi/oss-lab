@@ -4,7 +4,7 @@ services:
     availability-watcher:
         image: seecloud/availability:${LABEL:-latest}
         volumes:
-         - ${DIR}/configs/availability:/etc/availability
+         - ${DIR}/configs/availability:/etc/availability:ro
         networks:
          - oss-net
         entrypoint:
@@ -13,7 +13,7 @@ services:
     health-collector:
         image: seecloud/health:${LABEL:-latest}
         volumes:
-         - ${DIR}/configs/health:/etc/health
+         - ${DIR}/configs/health:/etc/health:ro
         environment:
          - RUN_HEALTH_JOB=True
         networks:
@@ -23,7 +23,7 @@ services:
     availability-api:
         image: seecloud/availability:${LABEL:-latest}
         volumes:
-         - ${DIR}/configs/availability:/etc/availability
+         - ${DIR}/configs/availability:/etc/availability:ro
         entrypoint:
          - ./entrypoint-api.sh
         networks:
@@ -34,7 +34,7 @@ services:
     health-api:
         image: seecloud/health:${LABEL:-latest}
         volumes:
-         - ${DIR}/configs/health:/etc/health
+         - ${DIR}/configs/health:/etc/health:ro
         environment:
          - RUN_HEALTH_API=True
         networks:
@@ -45,7 +45,7 @@ services:
     ceagle:
         image: seecloud/ceagle:${LABEL:-latest}
         volumes:
-         - ${DIR}/configs/ceagle:/etc/ceagle
+         - ${DIR}/configs/ceagle:/etc/ceagle:ro
         networks:
             oss-net:
                 aliases:
@@ -55,7 +55,7 @@ services:
     devops-portal:
         image: seecloud/fuel-devops-portal:${LABEL:-latest}
         volumes:
-         - ${DIR}/configs/nginx:/etc/nginx/conf.d/
+         - ${DIR}/configs/nginx:/etc/nginx/conf.d/:ro
         ports:
          - "${PORTAL_HTTP_PORT:-80}:80"
          - "${PORTAL_HTTPS_PORT:-443}:443"
