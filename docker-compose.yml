@@ -1,19 +1,7 @@
 version: '2.1'
 services:
-    # infra
-    elasticsearch:
-        image: elasticsearch
-        volumes:
-         - ${DIR}/data:/usr/share/elasticsearch/data
-        networks:
-            oss-net:
-                aliases:
-                    - elasticsearch
-        restart: always
     # jobs
     availability-watcher:
-        depends_on:
-         - elasticsearch
         image: seecloud/availability:latest
         volumes:
          - ${DIR}/configs/availability:/etc/availability
@@ -23,8 +11,6 @@ services:
          - availability-watcher
         restart: always
     health-collector:
-        depends_on:
-         - elasticsearch
         image: seecloud/health:latest
         volumes:
          - ${DIR}/configs/health:/etc/health
@@ -69,7 +55,7 @@ services:
     devops-portal:
         image: seecloud/fuel-devops-portal:latest
         volumes:
-         - ./configs/nginx:/etc/nginx/conf.d/
+         - ${DIR}/configs/nginx:/etc/nginx/conf.d/
         ports:
          - "${PORTAL_HTTP_PORT:-80}:80"
          - "${PORTAL_HTTPS_PORT:-443}:443"
@@ -78,4 +64,5 @@ services:
         restart: always
 networks:
     oss-net:
-        driver: bridge
+        external:
+            name: ${PROJECT}_oss-net

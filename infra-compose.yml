@@ -1,0 +1,15 @@
+version: '2.1'
+services:
+    # infra
+    elasticsearch:
+        image: elasticsearch
+        volumes:
+         - ${DIR}/data:/usr/share/elasticsearch/data
+        networks:
+            oss-net:
+                aliases:
+                    - elasticsearch
+        restart: always
+networks:
+    oss-net:
+        driver: bridge
