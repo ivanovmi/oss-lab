@@ -1,0 +1,4 @@
+source .venv/bin/activate
+export PROJECT=${1:-oss}
+export DIR="$PWD/projects/$PROJECT"
+export COMPOSE_PROJECT_NAME=$PROJECT

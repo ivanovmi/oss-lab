@@ -1,0 +1,68 @@
+version: '2.1'
+services:
+    # jobs
+    availability-watcher:
+        image: seecloud/availability:${TAG:-latest}
+        volumes:
+         - ${DIR}/configs/availability:/etc/availability:ro
+        networks:
+         - oss-net
+        entrypoint:
+         - availability-watcher
+        restart: always
+    health-collector:
+        image: seecloud/health:${TAG:-latest}
+        volumes:
+         - ${DIR}/configs/health:/etc/health:ro
+        environment:
+         - RUN_HEALTH_JOB=True
+        networks:
+         - oss-net
+        restart: always
+    # apis
+    availability-api:
+        image: seecloud/availability:${TAG:-latest}
+        volumes:
+         - ${DIR}/configs/availability:/etc/availability:ro
+        entrypoint:
+         - ./entrypoint-api.sh
+        networks:
+            oss-net:
+                aliases:
+                    - availability-api
+        restart: always
+    health-api:
+        image: seecloud/health:${TAG:-latest}
+        volumes:
+         - ${DIR}/configs/health:/etc/health:ro
+        environment:
+         - RUN_HEALTH_API=True
+        networks:
+            oss-net:
+                aliases:
+                    - health-api
+        restart: always
+    ceagle:
+        image: seecloud/ceagle:${TAG:-latest}
+        volumes:
+         - ${DIR}/configs/ceagle:/etc/ceagle:ro
+        networks:
+            oss-net:
+                aliases:
+                    - ceagle
+        restart: always
+    # ui
+    devops-portal:
+        image: seecloud/fuel-devops-portal:${TAG:-latest}
+        volumes:
+         - ${DIR}/configs/nginx:/etc/nginx/conf.d/:ro
+        ports:
+         - "${PORTAL_HTTP_PORT:-80}:80"
+         - "${PORTAL_HTTPS_PORT:-443}:443"
+        networks:
+         - oss-net
+        restart: always
+networks:
+    oss-net:
+        external:
+            name: ${PROJECT}_oss-net

@@ -1,0 +1,14 @@
+version: '2.1'
+services:
+    elasticsearch:
+        image: elasticsearch:${TAG:-latest}
+        volumes:
+         - ${DIR}/data:/usr/share/elasticsearch/data
+        networks:
+            oss-net:
+                aliases:
+                    - elasticsearch
+        restart: always
+networks:
+    oss-net:
+        driver: bridge

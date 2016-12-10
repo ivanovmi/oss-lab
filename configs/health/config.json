@@ -1,19 +1,19 @@
 {
     "flask": {
-      "PORT": 5000,
-    	"HOST": "0.0.0.0"
+        "PORT": 5000,
+        "HOST": "0.0.0.0"
     },
     "sources": [
         {
             "region": "cz-1.lab",
             "driver": {
                 "type": "tcp",
-                "elastic_src": "http://172.16.169.4:9200/log*/message"
+                "elastic_src": "http://ELASTICSEARCH_LOGS_IP:9200/log*/message"
             }
         }
     ],
     "backend": {
-        "elastic": "http://10.24.0.5:9200"
+        "elastic": "http://elasticsearch:9200"
     },
     "config": {
         "run_every_minutes": 2
