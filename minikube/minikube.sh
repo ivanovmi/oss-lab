@@ -84,7 +84,8 @@ roles:
     - ceagle
     - health-api
     - health-job
-    - availability
+    - availability-api
+    - availability-watcher
     - performance
 
 debug: true
